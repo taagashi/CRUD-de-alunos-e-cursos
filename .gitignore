@@ -36,3 +36,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### arquivo de dados confidenciais ###
+database.txt

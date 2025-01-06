@@ -116,4 +116,19 @@ public class AlunosCrud {
         }
     }
 
+    public boolean mudarIdadeAluno(int id, int novaIdade) throws SQLException
+    {
+        String sql = """
+                UPDADE alunos SET idade = ? WHERE id = ?;
+                """;
+        try(PreparedStatement comando = CONNECTION.prepareStatement(sql))
+        {
+            comando.setInt(1, novaIdade);
+            comando.setInt(2, id);
+            int indiceLinha = comando.executeUpdate();
+
+            return (indiceLinha != 0);
+        }
+    }
+
 }

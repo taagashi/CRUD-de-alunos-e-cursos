@@ -110,16 +110,4 @@ public class CursosCrud {
         }
     }
 
-    public static void main(String[] args) {
-        try
-        {
-            CursosCrud cursosCrud = new CursosCrud();
-            Curso curso = new Curso();
-
-        } catch (IOException e) {
-            System.out.println("Erro ao acessar dados " + e.getMessage());
-        } catch (SQLException e) {
-            System.out.println("Grave erro ao conectar com banco de dados " + e.getMessage());
-        }
-    }
 }

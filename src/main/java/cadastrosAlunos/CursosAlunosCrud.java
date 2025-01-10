@@ -125,7 +125,7 @@ public class CursosAlunosCrud {
                 String nomeAluno = result.getString("aluno");
                 String nomeCurso = result.getString("cursos");
 
-                System.out.println("{" + idAluno + "} " + nomeAluno + " esta cursando " + nomeCurso + " {" + idCurso + "}");
+                System.out.println("[" + idAluno + "] " + nomeAluno + " esta cursando " + nomeCurso + " [" + idCurso + "]");
             }
             return true;
         }

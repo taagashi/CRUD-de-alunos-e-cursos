@@ -39,6 +39,7 @@ public class AplicacaoCursosAlunos {
             System.out.println("4. Trocar curso de aluno");
             System.out.println("5. Trocar aluno de curso");
             System.out.println("6. Retirar aluno de seu curso");
+            System.out.println("7. Sair");
             System.out.println();
 
             System.out.print("Insira aqui: ");
@@ -91,7 +92,7 @@ public class AplicacaoCursosAlunos {
             System.out.print("Insira o id do aluno: ");
             int idAluno = SCANNER.nextInt();
 
-            System.out.println("Insira o id do curso que o aluno ira cursar: ");
+            System.out.print("Insira o id do curso que o aluno ira cursar: ");
             int idCurso = SCANNER.nextInt();
 
             if(!CURSOS_ALUNOS_CRUD.adicionarCursoAluno(idAluno, idCurso))
@@ -117,7 +118,7 @@ public class AplicacaoCursosAlunos {
     {
         try
         {
-            System.out.print("Insira o id do aluno para ver seus cursos");
+            System.out.print("Insira o id do aluno para ver seus cursos: ");
             int id = SCANNER.nextInt();
 
             if(!CURSOS_ALUNOS_CRUD.listarCursosDeAluno(id))
@@ -126,7 +127,7 @@ public class AplicacaoCursosAlunos {
             }
         }catch (InputMismatchException e)
         {
-            System.out.println(e.getMessage());
+            System.out.println("Digite um id válido");
         }
     }
 
@@ -156,7 +157,7 @@ public class AplicacaoCursosAlunos {
 
         }catch (InputMismatchException e)
         {
-            System.out.println(e.getMessage());
+            System.out.println("Digite um id válido");
         }
     }
 
@@ -170,7 +171,7 @@ public class AplicacaoCursosAlunos {
             System.out.print("Insira o id do aluno que vai substituir o antigo: ");
             int idNovoAluno = SCANNER.nextInt();
 
-            System.out.println("Digite o id do curso que este aluno esta cursando: ");
+            System.out.print("Digite o id do curso que este aluno esta cursando: ");
             int idCurso = SCANNER.nextInt();
 
             aluno = ALUNOS_CRUD.buscarAluno(idAluno);
@@ -186,7 +187,7 @@ public class AplicacaoCursosAlunos {
 
         }catch(InputMismatchException e)
         {
-            System.out.println(e.getMessage() );
+            System.out.println("Digite um id válido");
         }
     }
 
@@ -213,7 +214,7 @@ public class AplicacaoCursosAlunos {
 
         }catch(InputMismatchException e)
         {
-            System.out.println(e.getMessage());
+            System.out.println("Digite um id válido");
         }
     }
 }

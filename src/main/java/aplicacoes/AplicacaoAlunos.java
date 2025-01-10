@@ -34,6 +34,7 @@ public class AplicacaoAlunos {
             System.out.println("4. Atualizar nome de aluno");
             System.out.println("5. Atualizar idade de aluno");
             System.out.println("6. Deletar aluno");
+            System.out.println("7. Sair");
             System.out.println();
 
             System.out.print("Insira aqui: ");
@@ -82,18 +83,17 @@ public class AplicacaoAlunos {
         System.out.print("Insira o nome do aluno(a): ");
         aluno.setNome(SCANNER.next());
 
-        System.out.print("Insira a idade de: " + aluno.getNome());
+        System.out.print("Insira a idade de " + aluno.getNome() + ": ");
         try
         {
             aluno.setIdade(SCANNER.nextInt());
         }catch(InputMismatchException e)
         {
-            System.out.println(e.getMessage());
+            System.out.println("Você precisa digitar uma idade válida");
             return;
         }
         
         ALUNOS_CRUD.adicionarAluno(aluno);
-        System.out.println(aluno.getNome() + " cadastrado com sucesso");
     }
 
     public void buscarAluno() throws SQLException, InputMismatchException
@@ -164,7 +164,7 @@ public class AplicacaoAlunos {
                 return;
             }
 
-            System.out.println("Idade de " + aluno.getNome() + " foi autalizado(a) para" + novaIdade + " anos");
+            System.out.println("Idade de " + aluno.getNome() + " foi autalizado(a) para " + novaIdade + " anos");
 
         }catch(InputMismatchException e)
         {
@@ -178,12 +178,12 @@ public class AplicacaoAlunos {
         try
         {
             int id = SCANNER.nextInt();
+            aluno = ALUNOS_CRUD.buscarAluno(id);
             if(!ALUNOS_CRUD.deletarAluno(id))
             {
                 System.out.println("Não é possível deletar aluno porque esse id não existe");
                 return;
             }
-            aluno = ALUNOS_CRUD.buscarAluno(id);
             System.out.println(aluno.getNome() + " foi retirado com sucesso");
             
         }catch(InputMismatchException e)

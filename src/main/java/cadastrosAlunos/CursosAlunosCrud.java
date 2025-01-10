@@ -27,12 +27,10 @@ public class CursosAlunosCrud {
         try(PreparedStatement comando = CONNECTION.prepareStatement(sql))
         {
             AlunosCrud alunosCrud = new AlunosCrud();
-            Aluno aluno = new Aluno();
             CursosCrud cursosCrud = new CursosCrud();
-            Curso curso = new Curso();
 
-            aluno = alunosCrud.buscarAluno(idAluno);
-            curso = cursosCrud.buscarCurso(idCurso);
+            Aluno aluno = alunosCrud.buscarAluno(idAluno);
+            Curso curso = cursosCrud.buscarCurso(idCurso);
 
             if((aluno == null) || curso == null)
             {
@@ -75,7 +73,7 @@ public class CursosAlunosCrud {
     }
 
 
-    public boolean temAlunoCursando(int id) throws SQLException
+    public boolean naoTemAlunoCursando(int id) throws SQLException
     {
         String sql = """
                 SELECT DISTINCT alunos.nome from cursos_alunos INNER JOIN alunos on cursos_alunos.idaluno = alunos.id WHERE alunos.id = ?;
@@ -84,28 +82,27 @@ public class CursosAlunosCrud {
         {
             comando.setInt(1, id);
             ResultSet result = comando.executeQuery();
-            return result.next();
+            return !result.next();
         }
     }
 
-    public boolean temCursoAdicionado(int id) throws SQLException
+    public boolean naoTemCursoAdicionado(int id) throws SQLException
     {
         String sql = """
-                SELECT DISTINCT cursos.nome from cursos_alunos 
-                INNER JOIN cursos on cursos_alunos.idcurso = cursos.id
+                SELECT DISTINCT cursos.nome from cursos_alunos INNER JOIN cursos on cursos_alunos.idcurso = cursos.id
                 WHERE cursos.id = ?;
                 """;
         try(PreparedStatement comando = CONNECTION.prepareStatement(sql))
         {
             comando.setInt(1, id);
             ResultSet result = comando.executeQuery();
-            return result.next();
+            return !result.next();
         }
     }
 
     public boolean listarCursosDeAluno(int id) throws SQLException
     {
-        if(!temAlunoCursando(id))
+        if(naoTemAlunoCursando(id))
         {
             return false;
         }
@@ -134,9 +131,9 @@ public class CursosAlunosCrud {
         }
     }
 
-     private boolean trocarCusoDeAluno(int idAluno, int idCurso, int idNovoCurso) throws  SQLException, IOException
+     public boolean trocarCusoDeAluno(int idAluno, int idCurso, int idNovoCurso) throws  SQLException, IOException
      {
-         if((!temAlunoCursando(idAluno) || (!temCursoAdicionado(idCurso))))
+         if((naoTemAlunoCursando(idAluno) || (naoTemCursoAdicionado(idCurso))))
          {
              return false;
          }
@@ -163,9 +160,9 @@ public class CursosAlunosCrud {
          }
      }
 
-     private boolean trocarAlunoDeCurso(int idAluno, int idNovoAluno, int idCurso) throws SQLException, IOException
+     public boolean trocarAlunoDeCurso(int idAluno, int idNovoAluno, int idCurso) throws SQLException, IOException
      {
-       if((!temAlunoCursando(idAluno) || (!temCursoAdicionado(idCurso))))
+       if((naoTemAlunoCursando(idAluno) || (naoTemCursoAdicionado(idCurso))))
        {
            return false;
        }
@@ -178,7 +175,7 @@ public class CursosAlunosCrud {
 
        String sql = """
                UPDATE cursos_alunos SET idaluno = ?
-               WHERE idaluno = ? AND idcurso = ?; 
+               WHERE idaluno = ? AND idcurso = ?;
                """;
        try(PreparedStatement comando = CONNECTION.prepareStatement(sql))
        {
@@ -192,7 +189,7 @@ public class CursosAlunosCrud {
 
      public boolean retirarAlunoDeCuso(int idAluno, int idCurso) throws SQLException
      {
-         if((!temAlunoCursando(idAluno) || (!temCursoAdicionado(idCurso))))
+         if((naoTemAlunoCursando(idAluno) || (naoTemCursoAdicionado(idCurso))))
          {
              return  false;
          }

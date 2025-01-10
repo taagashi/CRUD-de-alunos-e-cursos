@@ -50,9 +50,9 @@ public class CursosAlunosCrud {
     public void listarAlunosCursos() throws SQLException
     {
         String sql = """
-                SELECT alunos.nome as alunos, cursos.nome as cursos from cursos_alunos
+                SELECT alunos.id AS idaluno, alunos.nome AS alunos, cursos.id AS idcurso, cursos.nome as Cursos from cursos_alunos
                 INNER JOIN alunos ON cursos_alunos.idaluno = alunos.id
-                INNER JOIN cursos ON cursos_alunos.idcurso = cursos.id;
+                INNER JOIN cursos ON cursos_alunos.idcurso = cursos.id
                 """;
         try(PreparedStatement comando = CONNECTION.prepareStatement(sql))
         {
@@ -61,10 +61,12 @@ public class CursosAlunosCrud {
 
             while(result.next())
             {
+                int idAluno = result.getInt("idaluno");
+                int idCurso = result.getInt("idcurso");
                 String nomeAluno = result.getString("alunos");
                 String nomeCurso = result.getString("cursos");
 
-                System.out.println(nomeAluno + " está cursando " + nomeCurso);
+                System.out.println("[" + idAluno + "] " + nomeAluno + " está cursando " + nomeCurso + " [" + idCurso + "]");
             }
         }
 
@@ -107,7 +109,7 @@ public class CursosAlunosCrud {
         }
 
         String sql = """
-                SELECT alunos.nome as aluno, cursos.nome as cursos from cursos_alunos
+                SELECT alunos.id as idaluno, alunos.nome as aluno, cursos.id as idcurso, cursos.nome as cursos from cursos_alunos
                 INNER JOIN alunos on cursos_alunos.idaluno = alunos.id
                 INNER JOIN cursos on cursos_alunos.idcurso = cursos.id
                 WHERE alunos.id = ?;
@@ -119,16 +121,18 @@ public class CursosAlunosCrud {
 
             while(result.next())
             {
+                int idAluno = result.getInt("idaluno");
+                int idCurso = result.getInt("idcurso");
                 String nomeAluno = result.getString("aluno");
                 String nomeCurso = result.getString("cursos");
 
-                System.out.println(nomeAluno + " esta cursando " + nomeCurso);
+                System.out.println("{" + idAluno + "} " + nomeAluno + " esta cursando " + nomeCurso + " {" + idCurso + "}");
             }
             return true;
         }
     }
 
-     public boolean trocarCusoDeAluno(int idAluno, int idCurso, int idNovoCurso) throws  SQLException, IOException
+     private boolean trocarCusoDeAluno(int idAluno, int idCurso, int idNovoCurso) throws  SQLException, IOException
      {
          if((!temAlunoCursando(idAluno) || (!temCursoAdicionado(idCurso))))
          {
@@ -157,7 +161,7 @@ public class CursosAlunosCrud {
          }
      }
 
-     public boolean trocarAlunoDeCurso(int idAluno, int idNovoAluno, int idCurso) throws SQLException, IOException
+     private boolean trocarAlunoDeCurso(int idAluno, int idNovoAluno, int idCurso) throws SQLException, IOException
      {
        if((!temAlunoCursando(idAluno) || (!temCursoAdicionado(idCurso))))
        {

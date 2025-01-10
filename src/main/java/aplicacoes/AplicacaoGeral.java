@@ -27,6 +27,7 @@ public class AplicacaoGeral {
                 System.out.println("1. Sessão de alunos");
                 System.out.println("2. Sessão de cusos");
                 System.out.println("3. Cadastrar aluno em cursos");
+                System.out.println("4. Sair");
                 System.out.println();
 
                 System.out.print("Insira aqui: ");

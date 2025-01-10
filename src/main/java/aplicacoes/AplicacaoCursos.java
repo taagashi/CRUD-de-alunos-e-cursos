@@ -33,6 +33,7 @@ public class AplicacaoCursos {
             System.out.println("3. Listar todos os cursos");
             System.out.println("4. Atualizar nome de curso");
             System.out.println("5. Deletar curso por id");
+            System.out.println("6. Sair");
             System.out.println();
 
             System.out.print("Insira aqui: ");
@@ -76,12 +77,12 @@ public class AplicacaoCursos {
 
     public void adicionarCurso() throws SQLException
     {
+        SCANNER.nextLine();
         System.out.print("Insira o nome do curso que voce deseja adicionar: ");
         String nome = SCANNER.nextLine();
         curso.setNome(nome);
         CURSOS_CRUD.adicionarCurso(curso);
 
-        System.out.println(nome + " foi adicionado como um curso");
     }
 
     public void buscarCursoPorId() throws SQLException
@@ -119,7 +120,7 @@ public class AplicacaoCursos {
             int id = SCANNER.nextInt();
             SCANNER.nextLine();
 
-            System.out.println("Insira o novo nome do curso: ");
+            System.out.print("Insira o novo nome do curso: ");
             String novoNome = SCANNER.nextLine();
 
             curso = CURSOS_CRUD.buscarCurso(id);

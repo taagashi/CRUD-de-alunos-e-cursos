@@ -1,4 +1,7 @@
-package cadastrosAlunos;
+package aplicacoes;
+
+import cadastrosAlunos.Aluno;
+import cadastrosAlunos.AlunosCrud;
 
 import java.io.IOException;
 import java.sql.SQLException;

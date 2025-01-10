@@ -26,12 +26,16 @@ public class AplicacaoCursos {
         while(online)
         {
             System.out.println("Bem vindo(a) a sessão de gerenciamento de cursos");
+            System.out.println();
+
             System.out.println("1. Adicionar curso");
             System.out.println("2. Buscar curso por id");
             System.out.println("3. Listar todos os cursos");
             System.out.println("4. Atualizar nome de curso");
             System.out.println("5. Deletar curso por id");
+            System.out.println();
 
+            System.out.print("Insira aqui: ");
             String navegacao = SCANNER.next();
 
             try

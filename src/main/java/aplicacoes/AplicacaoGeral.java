@@ -22,9 +22,12 @@ public class AplicacaoGeral {
             while(online)
             {
                 System.out.println("Bem vindo(a) ao programa Meu ALuno. Insira o que deseja fazer:");
+                System.out.println();
+
                 System.out.println("1. Sessão de alunos");
                 System.out.println("2. Sessão de cusos");
                 System.out.println("3. Cadastrar aluno em cursos");
+                System.out.println();
 
                 System.out.print("Insira aqui: ");
                 String navegacao = SCANNER.next();

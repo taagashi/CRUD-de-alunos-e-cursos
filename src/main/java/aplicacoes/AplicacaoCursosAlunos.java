@@ -31,12 +31,15 @@ public class AplicacaoCursosAlunos {
         while(online)
         {
             System.out.println("Bem vindo(a) a sessão de cadastro de alunos em cursos");
+            System.out.println();
+
             System.out.println("1. Adicionar aluno em um curso");
             System.out.println("2. Listar todos os alunos que estão cursando");
             System.out.println("3. Listar todos os cursos de um aluno");
             System.out.println("4. Trocar curso de aluno");
             System.out.println("5. Trocar aluno de curso");
             System.out.println("6. Retirar aluno de seu curso");
+            System.out.println();
 
             System.out.print("Insira aqui: ");
             String navegacao = SCANNER.next();

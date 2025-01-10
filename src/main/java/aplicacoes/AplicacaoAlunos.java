@@ -26,12 +26,15 @@ public class AplicacaoAlunos {
         while(online)
         {
             System.out.println("Bem vindo(a) a sessão de gerenciamento de alunos");
+            System.out.println();
+
             System.out.println("1. Adicionar aluno");
             System.out.println("2. Buscar aluno por id");
             System.out.println("3. Listar todos os alunos");
             System.out.println("4. Atualizar nome de aluno");
             System.out.println("5. Atualizar idade de aluno");
             System.out.println("6. Deletar aluno");
+            System.out.println();
 
             System.out.print("Insira aqui: ");
             String navegacao = SCANNER.next();

@@ -47,7 +47,7 @@ public class CursosAlunosCrud {
         }
     }
 
-    public void listarAlunosCursos() throws SQLException
+    public boolean listarAlunosCursos() throws SQLException
     {
         String sql = """
                 SELECT alunos.id AS idaluno, alunos.nome AS alunos, cursos.id AS idcurso, cursos.nome as Cursos from cursos_alunos
@@ -61,6 +61,7 @@ public class CursosAlunosCrud {
 
             while(result.next())
             {
+                temCursosAlunos = true;
                 int idAluno = result.getInt("idaluno");
                 int idCurso = result.getInt("idcurso");
                 String nomeAluno = result.getString("alunos");
@@ -68,6 +69,7 @@ public class CursosAlunosCrud {
 
                 System.out.println("[" + idAluno + "] " + nomeAluno + " está cursando " + nomeCurso + " [" + idCurso + "]");
             }
+            return temCursosAlunos;
         }
 
     }
